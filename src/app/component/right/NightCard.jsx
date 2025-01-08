@@ -1,6 +1,6 @@
-import NightCity from "@/app/component/right/NightCity";
-import NightTemp from "@/app/component/right/NightTemp";
-import CardFooterIcon from "@/app/component/right/CardFooterIcon";
+import NightCity from "@/app/component/right/NightCardCity";
+import NightTemp from "@/app/component/right/NightCardTemp";
+import CardFooterIcon from "@/app/component/right/NightCardFooter";
 
 export default function NightCard() {
   return (
