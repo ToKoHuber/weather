@@ -1,6 +1,6 @@
-import SunnyDayCity from "@/app/component/sunnyday/City";
-import DayTemp from "@/app/component/sunnyday/Temp";
-import CardFooterIcon from "@/app/component/sunnyday/CardFooterIcon";
+import SunnyDayCity from "@/app/component/left/City";
+import DayTemp from "@/app/component/left/Temp";
+import CardFooterIcon from "@/app/component/left/CardFooterIcon";
 
 export default function SunnyDayCard() {
   return (

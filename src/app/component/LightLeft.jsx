@@ -1,6 +1,6 @@
-import SunnyDayCard from "./sunnyday/DayCard";
-import SearchField from "./sunnyday/SearchField";
-import SunIcon from "@/app/component/sunnyday/SunIcon";
+import SunnyDayCard from "./left/DayCard";
+import SearchField from "./left/SearchField";
+import SunIcon from "@/app/component/left/SunIcon";
 
 export default function LightLeft() {
   return (
