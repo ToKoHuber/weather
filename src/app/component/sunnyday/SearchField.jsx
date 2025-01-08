@@ -29,7 +29,7 @@ export default function SearchField() {
   };
 
   return (
-    <div className="z-0 absolute top-[50px] left-[50px]">
+    <div className="z-20 absolute top-[0px] left-[40px]">
       <div className="flex gap-[16px] w-[567px] py-[16px] px-[24px] rounded-[48px] bg-white overflow-hidden">
         <svg
           className="w-[48px] h-[48px] opacity-20"

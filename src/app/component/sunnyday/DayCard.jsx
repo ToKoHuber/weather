@@ -1,10 +1,10 @@
-import SunnyDayCity from "@/app/component/sunnyday/SunnyDayCity";
-import SunnyDayTemp from "@/app/component/sunnyday/SunnyDayTemp";
-import SunnyDayFrame from "@/app/component/sunnyday/SunnyDayFrame";
+import SunnyDayCity from "@/app/component/sunnyday/City";
+import DayTemp from "@/app/component/sunnyday/Temp";
+import CardFooterIcon from "@/app/component/sunnyday/CardFooterIcon";
 
 export default function SunnyDayCard() {
   return (
-    <div className="z-10 w-[414px] h-[828px]  bg-black rounded-[48px] pt-[56px] ">
+    <div className="z-10 w-[414px] h-[828px]  backdrop-blur-[12px] bg-white bg-opacity-75 rounded-[48px] pt-[56px] ">
       <SunnyDayCity />
       <div className="w-[262px] h-[262px] mt-[49px] m-auto">
         <img
@@ -12,8 +12,8 @@ export default function SunnyDayCard() {
           alt=""
         />
       </div>
-      <SunnyDayTemp />
-      <SunnyDayFrame />
+      <DayTemp />
+      <CardFooterIcon />
       <div></div>
     </div>
   );

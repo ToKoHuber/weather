@@ -1,6 +1,6 @@
-export default function BackgroundSun() {
+export default function SunIcon() {
   return (
-    <div className="absolute top-[10vh] left-[10vw]">
+    <div className="z-0 absolute top-[10vh] left-[10vw]">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width={176}
