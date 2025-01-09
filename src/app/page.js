@@ -5,20 +5,28 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
   const [cities, setCities] = useState([]);
+  const [countries, setCountries] = useState([]);
   const [searched, setSearched] = useState([]);
   const [selectedCity, setSelectedCity] = useState("Ulan Bator");
   const [searchValue, setSearchValue] = useState("");
   const [dayTemp, setDayTemp] = useState();
   const [nightTemp, setNightTemp] = useState();
+  const [dayCondition, setDayCondition] = useState("");
+  const [nightCondition, setNightCondition] = useState("");
+  const [date, setDate] = useState();
 
   async function getData() {
     const result = await fetch("https://countriesnow.space/api/v0.1/countries");
     const data = await result.json();
     let incomeCities = data.data.map((country) => {
-      return country.cities;
+      let count = country.cities.map((city) => {
+        return { city: city, country: country.country };
+      });
+      return count;
     });
     incomeCities = incomeCities.flat();
     setCities(incomeCities);
+    console.log(incomeCities);
   }
 
   const searchHandler = (e) => {
@@ -51,11 +59,20 @@ export default function Home() {
 
     let inComeMaxTemp = data.forecast.forecastday[0].day.mintemp_c;
     setNightTemp(inComeMaxTemp);
+
+    let inComeDayCondition = data.forecast.forecastday[0].day.condition.text;
+    setDayCondition(inComeDayCondition);
+
+    let inComeNightCondition =
+      data.forecast.forecastday[0].hour[0].condition.text;
+    setNightCondition(inComeNightCondition);
+
+    let inComeDate = data.forecast.forecastday[0].date;
+    setDate(inComeDate);
   }
 
   useEffect(() => {
     getData();
-
     getTemp(selectedCity);
   }, []);
 
@@ -67,8 +84,16 @@ export default function Home() {
         handlerSelect={handlerSelect}
         selectedCity={selectedCity}
         dayTemp={dayTemp}
+        dayCondition={dayCondition}
+        date={date}
+        searchValue={searchValue}
       />
-      <DarkRight selectedCity={selectedCity} nightTemp={nightTemp} />
+      <DarkRight
+        selectedCity={selectedCity}
+        nightTemp={nightTemp}
+        nightCondition={nightCondition}
+        date={date}
+      />
     </div>
   );
 }

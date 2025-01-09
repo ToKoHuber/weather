@@ -1,9 +1,9 @@
-export default function NightCity({ selectedCity }) {
+export default function NightCity({ selectedCity, date }) {
   return (
     <div className="w-[100%] h-[91px] flex justify-between items-center px-[40px] pt-[56px]">
       <div>
         <p className="text-[#6B7280] font-Manrope text-[18px] font-[500] leading-normal">
-          September 10, 2021
+          {date}
         </p>
         <h2 className="text-white font-Manrope text-[48px] leading-normal font-[800]">
           {selectedCity}

@@ -2,9 +2,10 @@ export default function SearchField({
   searchHandler,
   searched,
   handlerSelect,
+  searchValue,
 }) {
   return (
-    <div className="z-20 absolute top-[0px] left-[40px]">
+    <div className="z-20 absolute top-[20px] left-[40px]">
       <div className="flex gap-[16px] w-[567px] py-[16px] px-[24px] rounded-[48px] bg-white overflow-hidden">
         <svg
           className="w-[48px] h-[48px] opacity-20"
@@ -18,15 +19,16 @@ export default function SearchField({
           type="text"
           placeholder="Search"
           onChange={searchHandler}
+          value={searchValue}
         />
       </div>
-      <div className="w-567px rounded-[24px] py-[16px]">
+      <div className="w-567px rounded-[24px] bg-white mt-[16px]">
         {searched.length > 0 &&
-          searched.map((city, index) => {
+          searched.slice(0, 3).map((city, index) => {
             return (
               <div
                 key={index}
-                className="flex w-[567px] h-[56px] px-[24px] gap-[16px] bg-white"
+                className="flex w-[567px] h-[56px] py-2 px-[24px]"
               >
                 <div className="w-[40px] h-[40px]">
                   <svg
@@ -52,7 +54,7 @@ export default function SearchField({
                   onClick={() => {
                     handlerSelect(city);
                   }}
-                  className="text-black w-[463px] h-[38px] text-[28px] font-[700] leading-normal"
+                  className="text-black w-[463px] h-[38px] text-[28px] font-[700] leading-normal ml-4"
                 >
                   <p>{city}</p>
                 </div>
