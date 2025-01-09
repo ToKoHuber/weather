@@ -1,9 +1,9 @@
-export default function DayTemp() {
+export default function DayTemp({ dayTemp }) {
   return (
     <div className="ml-[48px]">
       <div>
-        <p className="font-Manrope text-[144px] font-[800] leading-normal text-black bg-cool-gray-gradient ">
-          26°
+        <p className="font-Manrope text-[104px] font-[800] leading-normal text-black bg-cool-gray-gradient ">
+          {dayTemp}°
         </p>
       </div>
       <div>

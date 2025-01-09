@@ -1,6 +1,6 @@
 export default function CardFooterIcon() {
   return (
-    <div className="px-[48px] my-[48px  ] flex justify-between">
+    <div className="px-[48px] my-[48px  ] flex justify-between mt-[48px]">
       <div>
         <svg
           width={32}

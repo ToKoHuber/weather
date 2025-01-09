@@ -1,33 +1,8 @@
-import { useEffect, useState } from "react";
-
-export default function SearchField() {
-  const [cities, setCities] = useState([]);
-  const [searched, setSearched] = useState([]);
-
-  async function getData() {
-    const result = await fetch("https://countriesnow.space/api/v0.1/countries");
-    const data = await result.json();
-    let incomeCities = data.data.map((country) => {
-      return country.cities;
-    });
-    incomeCities = incomeCities.flat();
-    setCities(incomeCities);
-  }
-  useEffect(() => {
-    getData();
-  }, []);
-
-  const searchHandler = (e) => {
-    const search = e.target.value;
-    const filtered = cities.filter((city) => {
-      if (!search) {
-        return false;
-      }
-      return city.includes(search);
-    });
-    setSearched(filtered);
-  };
-
+export default function SearchField({
+  searchHandler,
+  searched,
+  handlerSelect,
+}) {
   return (
     <div className="z-20 absolute top-[0px] left-[40px]">
       <div className="flex gap-[16px] w-[567px] py-[16px] px-[24px] rounded-[48px] bg-white overflow-hidden">
@@ -47,9 +22,12 @@ export default function SearchField() {
       </div>
       <div className="w-567px rounded-[24px] py-[16px]">
         {searched.length > 0 &&
-          searched.map((city) => {
+          searched.map((city, index) => {
             return (
-              <div className="flex w-[567px] h-[56px] px-[24px] gap-[16px] bg-white">
+              <div
+                key={index}
+                className="flex w-[567px] h-[56px] px-[24px] gap-[16px] bg-white"
+              >
                 <div className="w-[40px] h-[40px]">
                   <svg
                     width={40}
@@ -70,7 +48,12 @@ export default function SearchField() {
                     </g>
                   </svg>
                 </div>
-                <div className="text-black w-[463px] h-[38px] text-[28px] font-[700] leading-normal">
+                <div
+                  onClick={() => {
+                    handlerSelect(city);
+                  }}
+                  className="text-black w-[463px] h-[38px] text-[28px] font-[700] leading-normal"
+                >
                   <p>{city}</p>
                 </div>
               </div>

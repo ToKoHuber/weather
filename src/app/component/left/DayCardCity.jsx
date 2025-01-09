@@ -1,4 +1,4 @@
-export default function SunnyDayCity() {
+export default function SunnyDayCity({ selectedCity, dayTemp }) {
   return (
     <div className="w-[100%] h-[91px] flex justify-between items-center px-[40px] pt-[56px]">
       <div>
@@ -6,7 +6,7 @@ export default function SunnyDayCity() {
           September 10, 2021
         </p>
         <h2 className="text-[#111827] font-Manrope text-[48px] leading-normal font-[800]">
-          Krakow
+          {selectedCity}
         </h2>
       </div>
       <div>
