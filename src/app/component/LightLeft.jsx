@@ -11,6 +11,7 @@ export default function LightLeft({
   dayCondition,
   date,
   searchValue,
+  renderIcon,
 }) {
   return (
     <div className="w-[50%] h-[100%] bg-[#F3F4F6] relative flex items-center justify-center">
@@ -19,6 +20,7 @@ export default function LightLeft({
         dayTemp={dayTemp}
         dayCondition={dayCondition}
         date={date}
+        renderIcon={renderIcon}
       />
       <SunIcon />
       <SearchField

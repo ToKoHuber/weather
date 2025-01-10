@@ -1,6 +1,7 @@
 "use client";
 import LightLeft from "@/app/component/LightLeft";
 import DarkRight from "@/app/component/DarkRight";
+import Middle from "@/app/component/Middle";
 import { useEffect, useState } from "react";
 
 export default function Home() {
@@ -31,12 +32,14 @@ export default function Home() {
 
   const searchHandler = (e) => {
     const search = e.target.value.toLowerCase();
-    setSearchValue(search.toLowerCase());
+    setSearchValue(search);
     const filtered = cities.filter((city) => {
       if (!search) {
         return false;
       }
-      return city.toLowerCase().includes(search);
+      // "Ulaanbaatar" -> "ulaanbaatar" === "ulaa"
+      //{city:"Ulaanbaatar", country: "Mongolia"} ->
+      return city.city.toLowerCase().includes(search);
     });
     setSearched(filtered);
   };
@@ -76,8 +79,60 @@ export default function Home() {
     getTemp(selectedCity);
   }, []);
 
+  const renderIcon = () => {
+    const dayCase = dayCondition?.toLowerCase();
+    switch (true) {
+      case dayCase.includes("sunny"):
+        return <img src="./Sun.png" />;
+        break;
+      case dayCase.includes("cloud"):
+        return <img src="./Clouds.png" />;
+        break;
+      case dayCase.includes("wind"):
+        return <img src="./Wind.png" />;
+        break;
+      case dayCase.includes("rain"):
+        return <img src="./Rain.png" />;
+        break;
+      case dayCase.includes("snow"):
+        return <img src="./Snow.png" />;
+        break;
+      case dayCase.includes("heavy snow"):
+        return <img src="./Heavy-snow.png" />;
+        break;
+      default:
+        return <img src="./Sun.png" />;
+    }
+  };
+
+  const renderNightIcon = () => {
+    const nightCase = nightCondition?.toLowerCase();
+    switch (true) {
+      case nightCase.includes("sunny"):
+        return <img src="./night-icon/Sun.png" />;
+        break;
+      case nightCase.includes("cloud"):
+        return <img src="./night-icon/Clouds.png" />;
+        break;
+      case nightCase.includes("wind"):
+        return <img src="./night-icon/Wind.png" />;
+        break;
+      case nightCase.includes("rain"):
+        return <img src="./night-icon/Rain.png" />;
+        break;
+      case nightCase.includes("snow"):
+        return <img src="./night-icon/Snow.png" />;
+        break;
+      case nightCase.includes("heavy snow"):
+        return <img src="./night-icon/heavy-snow.png" />;
+        break;
+      default:
+        return <img src="./night-icon/Sun.png" />;
+    }
+  };
+
   return (
-    <div className="flex w-[100vw] h-[100vh]">
+    <div className="flex w-[100vw] h-[100vh] realative">
       <LightLeft
         searchHandler={searchHandler}
         searched={searched}
@@ -87,13 +142,18 @@ export default function Home() {
         dayCondition={dayCondition}
         date={date}
         searchValue={searchValue}
+        renderIcon={renderIcon}
       />
       <DarkRight
         selectedCity={selectedCity}
         nightTemp={nightTemp}
         nightCondition={nightCondition}
         date={date}
+        renderNightIcon={renderNightIcon}
       />
+      <div className="absolute size-full flex justify-center items-center">
+        <Middle />
+      </div>
     </div>
   );
 }
